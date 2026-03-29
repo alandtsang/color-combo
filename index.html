@@ -518,6 +518,25 @@
         </div>
       </div>
 
+      <!-- Lightness Slider -->
+      <div class="picker-section">
+        <div class="slider-container">
+          <div class="slider-labels">
+            <span>明度</span>
+            <span id="lightnessValue">65%</span>
+          </div>
+          <input
+            type="range"
+            class="slider"
+            id="lightnessSlider"
+            min="0"
+            max="100"
+            value="65"
+            style="color: hsl(239, 70%, 65%);"
+          >
+        </div>
+      </div>
+
       <!-- HEX Input -->
       <div class="picker-section">
         <label>HEX 输入</label>
@@ -556,6 +575,8 @@
     const wheelSelector = document.getElementById('wheelSelector');
     const saturationSlider = document.getElementById('saturationSlider');
     const saturationValue = document.getElementById('saturationValue');
+    const lightnessSlider = document.getElementById('lightnessSlider');
+    const lightnessValue = document.getElementById('lightnessValue');
     const hexInput = document.getElementById('hexInput');
     const mainColorPreview = document.getElementById('mainColorPreview');
     const mainHexDisplay = document.getElementById('mainHexDisplay');
@@ -669,6 +690,8 @@
     function updateFromHSL() {
       saturationValue.textContent = `${currentSaturation}%`;
       saturationSlider.style.color = `hsl(${currentHue}, ${currentSaturation}%, 65%)`;
+      lightnessValue.textContent = `${currentLightness}%`;
+      lightnessSlider.style.color = `hsl(${currentHue}, ${currentSaturation}%, ${currentLightness}%)`;
 
       const hex = hslToHex(currentHue, currentSaturation, currentLightness);
       mainColorPreview.style.backgroundColor = hex;
@@ -690,6 +713,7 @@
       currentLightness = hsl.l;
 
       saturationSlider.value = currentSaturation;
+      lightnessSlider.value = currentLightness;
       updateFromHSL();
     }
 
@@ -905,6 +929,11 @@
 
     saturationSlider.addEventListener('input', (e) => {
       currentSaturation = parseInt(e.target.value);
+      updateFromHSL();
+    });
+
+    lightnessSlider.addEventListener('input', (e) => {
+      currentLightness = parseInt(e.target.value);
       updateFromHSL();
     });
 
