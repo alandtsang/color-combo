@@ -403,6 +403,271 @@
       box-shadow: var(--shadow-sm), inset 0 0 0 1px rgba(0,0,0,0.1);
     }
 
+    /* Mode Selector */
+    .mode-selector {
+      display: flex;
+      background: var(--bg-primary);
+      border-radius: var(--radius-md);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 10px 16px;
+      border: none;
+      background: transparent;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mode-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .mode-btn.active {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Step Indicator */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border-color);
+      transition: background 0.2s ease;
+    }
+
+    .step-dot.active {
+      background: var(--text-primary);
+    }
+
+    .step-dot.completed {
+      background: #22c55e;
+    }
+
+    /* Step Panel */
+    .step-panel {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step-panel.active {
+      display: flex;
+    }
+
+    .step-section {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .step-section-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .step-section-value {
+      font-size: 12px;
+      font-family: 'SF Mono', Monaco, monospace;
+      color: var(--text-secondary);
+    }
+
+    /* Secondary/Accent Suggestions */
+    .hue-suggestions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .hue-suggestion {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hue-suggestion:hover {
+      transform: scale(1.1);
+    }
+
+    .hue-suggestion.selected {
+      border-color: var(--text-primary);
+    }
+
+    .hue-suggestion-label {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      background: rgba(255,255,255,0.9);
+      padding: 2px 4px;
+      border-radius: 3px;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+    }
+
+    .hue-suggestion:hover .hue-suggestion-label,
+    .hue-suggestion.selected .hue-suggestion-label {
+      opacity: 1;
+    }
+
+    /* Lightness Slider for suggestion */
+    .suggestion-lightness {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .suggestion-lightness input[type="range"] {
+      flex: 1;
+      height: 6px;
+      border-radius: 3px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: linear-gradient(to right, #1c1917, #a8a29e);
+      outline: none;
+    }
+
+    .suggestion-lightness input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: var(--shadow-sm), 0 0 0 1px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .suggestion-lightness span {
+      font-size: 11px;
+      color: var(--text-secondary);
+      min-width: 32px;
+      text-align: right;
+    }
+
+    /* Color Preview Bar */
+    .color-preview-bar {
+      display: flex;
+      height: 60px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .preview-segment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: flex 0.3s ease;
+    }
+
+    .preview-segment.main { flex: 60; }
+    .preview-segment.secondary { flex: 30; }
+    .preview-segment.accent { flex: 10; }
+
+    /* Selected Colors Display */
+    .selected-colors-display {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .selected-color-item {
+      text-align: center;
+      padding: 12px 8px;
+      background: var(--bg-primary);
+      border-radius: var(--radius-sm);
+    }
+
+    .selected-color-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin: 0 auto 8px;
+      box-shadow: var(--shadow-sm), inset 0 0 0 1px rgba(0,0,0,0.1);
+    }
+
+    .selected-color-label {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .selected-color-hex {
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    /* Copy Button */
+    .copy-combo-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--text-primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .copy-combo-btn:hover {
+      opacity: 0.9;
+      transform: scale(1.01);
+    }
+
+    .copy-combo-btn.copied {
+      background: #22c55e;
+    }
+
+    /* Disabled state */
+    .step-section.disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
     /* Responsive */
     @media (max-width: 900px) {
       .app {
@@ -483,8 +748,14 @@
         <p class="subtitle">基于 60-30-10 色彩法则</p>
       </header>
 
-      <!-- Main Color Display -->
-      <div class="main-color-display">
+      <!-- Mode Selector -->
+      <div class="mode-selector">
+        <button class="mode-btn active" data-mode="auto">自动生成</button>
+        <button class="mode-btn" data-mode="step">逐步选择</button>
+      </div>
+
+      <!-- Auto Mode: Main Color Display -->
+      <div class="main-color-display" id="mainColorSection">
         <div class="color-preview-large" id="mainColorPreview">
           <span class="hex-display" id="mainHexDisplay">#6366F1</span>
         </div>
@@ -551,6 +822,79 @@
         <label>快速选择</label>
         <div class="quick-colors" id="quickColors"></div>
       </div>
+
+      <!-- Step-by-Step Mode Panel -->
+      <div class="step-panel" id="stepPanel">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+          <span class="step-dot active" id="step1Dot"></span>
+          <span>选择辅色</span>
+          <span class="step-dot" id="step2Dot"></span>
+          <span>选择点缀色</span>
+          <span class="step-dot" id="step3Dot"></span>
+        </div>
+
+        <!-- Secondary Color Suggestions -->
+        <div class="step-section" id="secondarySection">
+          <div class="step-section-header">
+            <span class="step-section-title">选择辅色</span>
+            <span class="step-section-value" id="secondaryValue">—</span>
+          </div>
+          <div class="hue-suggestions" id="secondarySuggestions"></div>
+          <div class="suggestion-lightness" id="secondaryLightnessControl" style="display: none;">
+            <input type="range" id="secondaryLightnessSlider" min="20" max="80" value="50">
+            <span id="secondaryLightnessValue">50%</span>
+          </div>
+        </div>
+
+        <!-- Accent Color Suggestions -->
+        <div class="step-section disabled" id="accentSection">
+          <div class="step-section-header">
+            <span class="step-section-title">选择点缀色</span>
+            <span class="step-section-value" id="accentValue">—</span>
+          </div>
+          <div class="hue-suggestions" id="accentSuggestions"></div>
+          <div class="suggestion-lightness" id="accentLightnessControl" style="display: none;">
+            <input type="range" id="accentLightnessSlider" min="20" max="80" value="50">
+            <span id="accentLightnessValue">50%</span>
+          </div>
+        </div>
+
+        <!-- Color Preview Bar -->
+        <div class="color-preview-bar" id="colorPreviewBar">
+          <div class="preview-segment main" id="previewMain"></div>
+          <div class="preview-segment secondary" id="previewSecondary"></div>
+          <div class="preview-segment accent" id="previewAccent"></div>
+        </div>
+
+        <!-- Selected Colors Display -->
+        <div class="selected-colors-display" id="selectedColorsDisplay">
+          <div class="selected-color-item">
+            <div class="selected-color-swatch" id="selectedMainSwatch"></div>
+            <div class="selected-color-label">主色</div>
+            <div class="selected-color-hex" id="selectedMainHex">#6366F1</div>
+          </div>
+          <div class="selected-color-item">
+            <div class="selected-color-swatch" id="selectedSecondarySwatch" style="background: #e7e5e4;"></div>
+            <div class="selected-color-label">辅色</div>
+            <div class="selected-color-hex" id="selectedSecondaryHex">—</div>
+          </div>
+          <div class="selected-color-item">
+            <div class="selected-color-swatch" id="selectedAccentSwatch" style="background: #e7e5e4;"></div>
+            <div class="selected-color-label">点缀色</div>
+            <div class="selected-color-hex" id="selectedAccentHex">—</div>
+          </div>
+        </div>
+
+        <!-- Copy Button -->
+        <button class="copy-combo-btn" id="copyComboBtn" style="display: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          复制配色方案
+        </button>
+      </div>
     </aside>
 
     <!-- Right Panel: Color Schemes -->
@@ -570,6 +914,13 @@
     let currentSaturation = 70;
     let currentLightness = 65;
 
+    // Step-by-step mode state
+    let currentMode = 'auto';
+    let selectedSecondary = null; // { h, s, l }
+    let selectedAccent = null; // { h, s, l }
+    let secondaryLightness = 50;
+    let accentLightness = 50;
+
     // DOM Elements
     const colorWheel = document.getElementById('colorWheel');
     const wheelSelector = document.getElementById('wheelSelector');
@@ -582,6 +933,36 @@
     const mainHexDisplay = document.getElementById('mainHexDisplay');
     const schemesList = document.getElementById('schemesList');
     const quickColorsContainer = document.getElementById('quickColors');
+
+    // Step-by-step DOM elements
+    const stepPanel = document.getElementById('stepPanel');
+    const secondarySection = document.getElementById('secondarySection');
+    const accentSection = document.getElementById('accentSection');
+    const secondarySuggestions = document.getElementById('secondarySuggestions');
+    const accentSuggestions = document.getElementById('accentSuggestions');
+    const secondaryLightnessControl = document.getElementById('secondaryLightnessControl');
+    const secondaryLightnessSlider = document.getElementById('secondaryLightnessSlider');
+    const secondaryLightnessValue = document.getElementById('secondaryLightnessValue');
+    const accentLightnessControl = document.getElementById('accentLightnessControl');
+    const accentLightnessSlider = document.getElementById('accentLightnessSlider');
+    const accentLightnessValue = document.getElementById('accentLightnessValue');
+    const secondaryValue = document.getElementById('secondaryValue');
+    const accentValue = document.getElementById('accentValue');
+    const previewMain = document.getElementById('previewMain');
+    const previewSecondary = document.getElementById('previewSecondary');
+    const previewAccent = document.getElementById('previewAccent');
+    const selectedMainSwatch = document.getElementById('selectedMainSwatch');
+    const selectedMainHex = document.getElementById('selectedMainHex');
+    const selectedSecondarySwatch = document.getElementById('selectedSecondarySwatch');
+    const selectedSecondaryHex = document.getElementById('selectedSecondaryHex');
+    const selectedAccentSwatch = document.getElementById('selectedAccentSwatch');
+    const selectedAccentHex = document.getElementById('selectedAccentHex');
+    const copyComboBtn = document.getElementById('copyComboBtn');
+    const step1Dot = document.getElementById('step1Dot');
+    const step2Dot = document.getElementById('step2Dot');
+    const step3Dot = document.getElementById('step3Dot');
+    const mainColorSection = document.getElementById('mainColorSection');
+    const schemesPanel = document.querySelector('.schemes-panel');
 
     // Quick color presets
     const quickColors = [
@@ -700,6 +1081,23 @@
 
       updateWheelSelector();
       generateSchemes();
+
+      // Update step panel if in step mode
+      if (currentMode === 'step') {
+        selectedSecondary = null;
+        selectedAccent = null;
+        secondaryValue.textContent = '—';
+        accentValue.textContent = '—';
+        secondaryLightnessControl.style.display = 'none';
+        accentLightnessControl.style.display = 'none';
+        accentSection.classList.add('disabled');
+        copyComboBtn.style.display = 'none';
+        step1Dot.className = 'step-dot active';
+        step2Dot.className = 'step-dot';
+        step3Dot.className = 'step-dot';
+        renderSecondarySuggestions();
+        updateStepPreview();
+      }
     }
 
     // Set color from HEX
@@ -924,6 +1322,286 @@
       });
     }
 
+    // Mode switching
+    function initModeSelector() {
+      const modeBtns = document.querySelectorAll('.mode-btn');
+      modeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const mode = btn.dataset.mode;
+          if (mode === currentMode) return;
+
+          currentMode = mode;
+          modeBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          if (mode === 'auto') {
+            stepPanel.classList.remove('active');
+            schemesPanel.style.display = 'block';
+            mainColorSection.style.display = 'block';
+          } else {
+            stepPanel.classList.add('active');
+            schemesPanel.style.display = 'none';
+            mainColorSection.style.display = 'none';
+            resetStepSelections();
+            renderSecondarySuggestions();
+            updateStepPreview();
+          }
+        });
+      });
+    }
+
+    function resetStepSelections() {
+      selectedSecondary = null;
+      selectedAccent = null;
+      secondaryLightness = 50;
+      accentLightness = 50;
+      secondaryValue.textContent = '—';
+      accentValue.textContent = '—';
+      secondaryLightnessControl.style.display = 'none';
+      accentLightnessControl.style.display = 'none';
+      accentSection.classList.add('disabled');
+      copyComboBtn.style.display = 'none';
+      step1Dot.className = 'step-dot active';
+      step2Dot.className = 'step-dot';
+      step3Dot.className = 'step-dot';
+    }
+
+    // Secondary color suggestions
+    function generateSecondarySuggestions(mainHue) {
+      return [
+        { h: -1, label: '黑色', type: 'black', lightness: 15 },
+        { h: -1, label: '深灰', type: 'darkgray', lightness: 30 },
+        { h: -1, label: '灰色', type: 'gray', lightness: 50 },
+        { h: -1, label: '浅灰', type: 'lightgray', lightness: 70 },
+        { h: -1, label: '白色', type: 'white', lightness: 90 },
+        { h: (mainHue + 180) % 360, label: '互补色 +180°', type: 'complementary' },
+        { h: (mainHue + 30) % 360, label: '类似色 +30°', type: 'analogous+30' },
+        { h: (mainHue - 30 + 360) % 360, label: '类似色 -30°', type: 'analogous-30' },
+        { h: (mainHue + 60) % 360, label: '双类似 +60°', type: 'double+60' },
+        { h: (mainHue - 60 + 360) % 360, label: '双类似 -60°', type: 'double-60' },
+        { h: (mainHue + 120) % 360, label: '三等分 +120°', type: 'triadic+120' },
+        { h: (mainHue + 150) % 360, label: '拆分互补 +150°', type: 'split+150' },
+        { h: (mainHue + 210) % 360, label: '拆分互补 +210°', type: 'split+210' }
+      ];
+    }
+
+    function renderSecondarySuggestions() {
+      const suggestions = generateSecondarySuggestions(currentHue);
+      secondarySuggestions.innerHTML = suggestions.map(s => {
+        const isNeutral = s.h === -1;
+        const color = isNeutral ? `hsl(0, 0%, ${s.lightness}%)` : hslToHex(s.h, currentSaturation, 50);
+        return `
+          <div class="hue-suggestion"
+               style="background: ${color};"
+               data-hue="${s.h}"
+               data-type="${s.type}"
+               data-lightness="${s.lightness || 50}"
+               title="${s.label}">
+            <span class="hue-suggestion-label">${s.label}</span>
+          </div>
+        `;
+      }).join('');
+
+      secondarySuggestions.querySelectorAll('.hue-suggestion').forEach(el => {
+        el.addEventListener('click', () => {
+          const h = parseInt(el.dataset.hue);
+          const type = el.dataset.type;
+          const lightness = parseInt(el.dataset.lightness);
+          selectSecondary(h, type, lightness);
+        });
+      });
+    }
+
+    function selectSecondary(hue, type, lightness) {
+      const isNeutral = hue === -1;
+
+      if (isNeutral) {
+        selectedSecondary = {
+          h: 0,
+          s: 0,
+          l: lightness
+        };
+        secondaryLightness = lightness;
+        secondaryLightnessSlider.value = lightness;
+        secondaryLightnessValue.textContent = `${lightness}%`;
+        secondaryLightnessControl.style.display = 'flex';
+      } else {
+        selectedSecondary = {
+          h: hue,
+          s: Math.max(20, currentSaturation - 10),
+          l: secondaryLightness
+        };
+        secondaryLightnessControl.style.display = 'flex';
+      }
+
+      secondarySuggestions.querySelectorAll('.hue-suggestion').forEach(el => {
+        const elHue = parseInt(el.dataset.hue);
+        const elLightness = parseInt(el.dataset.lightness);
+        el.classList.toggle('selected', elHue === hue && elLightness === (lightness || 50));
+      });
+
+      const displayHex = isNeutral ? hslToHex(0, 0, lightness) : hslToHex(hue, currentSaturation, secondaryLightness);
+      secondaryValue.textContent = displayHex;
+
+      accentSection.classList.remove('disabled');
+      step1Dot.className = 'step-dot completed';
+      step2Dot.className = 'step-dot active';
+      step3Dot.className = 'step-dot';
+
+      renderAccentSuggestions();
+      updateStepPreview();
+    }
+
+    // Accent color suggestions
+    function generateAccentSuggestions(mainHue, mainSat, mainLit, secondaryHue, secondaryIsNeutral) {
+      if (secondaryIsNeutral) {
+        // When secondary is neutral, accent should complement the main color
+        return [
+          { h: mainHue, label: '同主色', type: 'same' },
+          { h: (mainHue + 180) % 360, label: '主色互补', type: 'complement' },
+          { h: (mainHue + 30) % 360, label: '主色+30°', type: 'analogous+30' },
+          { h: (mainHue - 30 + 360) % 360, label: '主色-30°', type: 'analogous-30' }
+        ];
+      }
+      return [
+        { h: secondaryHue, label: '同辅色', type: 'same' },
+        { h: (secondaryHue + 30) % 360, label: '辅色+30°', type: 'secondary+30' },
+        { h: (secondaryHue - 30 + 360) % 360, label: '辅色-30°', type: 'secondary-30' },
+        { h: (mainHue + secondaryHue) / 2 % 360, label: '中间色', type: 'midpoint' }
+      ];
+    }
+
+    function renderAccentSuggestions() {
+      if (!selectedSecondary) return;
+
+      const secondaryIsNeutral = selectedSecondary.s === 0;
+      const suggestions = generateAccentSuggestions(
+        currentHue, currentSaturation, currentLightness,
+        selectedSecondary.h, secondaryIsNeutral
+      );
+
+      accentSuggestions.innerHTML = suggestions.map(s => {
+        const sat = secondaryIsNeutral ? Math.min(100, currentSaturation + 15) : (s.type === 'same' ? selectedSecondary.s : Math.min(100, currentSaturation + 15));
+        const color = hslToHex(s.h, sat, accentLightness);
+        return `
+          <div class="hue-suggestion"
+               style="background: ${color};"
+               data-hue="${s.h}"
+               data-type="${s.type}"
+               title="${s.label}">
+            <span class="hue-suggestion-label">${s.label}</span>
+          </div>
+        `;
+      }).join('');
+
+      accentSuggestions.querySelectorAll('.hue-suggestion').forEach(el => {
+        el.addEventListener('click', () => {
+          const h = parseInt(el.dataset.hue);
+          selectAccent(h);
+        });
+      });
+    }
+
+    function selectAccent(hue) {
+      const secondaryIsNeutral = selectedSecondary.s === 0;
+      const sat = secondaryIsNeutral ? Math.min(100, currentSaturation + 15) : Math.min(100, currentSaturation + 15);
+      selectedAccent = {
+        h: hue,
+        s: sat,
+        l: accentLightness
+      };
+
+      accentSuggestions.querySelectorAll('.hue-suggestion').forEach(el => {
+        el.classList.toggle('selected', parseInt(el.dataset.hue) === hue);
+      });
+
+      accentLightnessControl.style.display = 'flex';
+      accentValue.textContent = hslToHex(hue, sat, accentLightness);
+
+      step2Dot.className = 'step-dot completed';
+      step3Dot.className = 'step-dot completed';
+      copyComboBtn.style.display = 'flex';
+
+      updateStepPreview();
+    }
+
+    function updateStepPreview() {
+      const mainHex = hslToHex(currentHue, currentSaturation, currentLightness);
+      const secondaryHex = selectedSecondary ? hslToHex(selectedSecondary.h, selectedSecondary.s, selectedSecondary.l) : '#e7e5e4';
+      const accentHex = selectedAccent ? hslToHex(selectedAccent.h, selectedAccent.s, selectedAccent.l) : '#e7e5e4';
+
+      previewMain.style.background = mainHex;
+      previewSecondary.style.background = secondaryHex;
+      previewAccent.style.background = accentHex;
+
+      selectedMainSwatch.style.background = mainHex;
+      selectedMainHex.textContent = mainHex;
+
+      if (selectedSecondary) {
+        selectedSecondarySwatch.style.background = hslToHex(selectedSecondary.h, selectedSecondary.s, selectedSecondary.l);
+        selectedSecondaryHex.textContent = hslToHex(selectedSecondary.h, selectedSecondary.s, selectedSecondary.l);
+      } else {
+        selectedSecondarySwatch.style.background = '#e7e5e4';
+        selectedSecondaryHex.textContent = '—';
+      }
+
+      if (selectedAccent) {
+        selectedAccentSwatch.style.background = hslToHex(selectedAccent.h, selectedAccent.s, selectedAccent.l);
+        selectedAccentHex.textContent = hslToHex(selectedAccent.h, selectedAccent.s, selectedAccent.l);
+      } else {
+        selectedAccentSwatch.style.background = '#e7e5e4';
+        selectedAccentHex.textContent = '—';
+      }
+    }
+
+    // Copy combo
+    function initCopyComboBtn() {
+      copyComboBtn.addEventListener('click', () => {
+        const mainHex = hslToHex(currentHue, currentSaturation, currentLightness);
+        const secondaryHex = hslToHex(selectedSecondary.h, selectedSecondary.s, selectedSecondary.l);
+        const accentHex = hslToHex(selectedAccent.h, selectedAccent.s, selectedAccent.l);
+
+        const text = `主色: ${mainHex} | 辅色: ${secondaryHex} | 点缀色: ${accentHex}`;
+        navigator.clipboard.writeText(text).then(() => {
+          const originalHTML = copyComboBtn.innerHTML;
+          copyComboBtn.classList.add('copied');
+          copyComboBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            已复制
+          `;
+          setTimeout(() => {
+            copyComboBtn.classList.remove('copied');
+            copyComboBtn.innerHTML = originalHTML;
+          }, 2000);
+        });
+      });
+    }
+
+    // Secondary lightness slider
+    secondaryLightnessSlider.addEventListener('input', (e) => {
+      secondaryLightness = parseInt(e.target.value);
+      secondaryLightnessValue.textContent = `${secondaryLightness}%`;
+      if (selectedSecondary) {
+        selectedSecondary.l = secondaryLightness;
+        secondaryValue.textContent = hslToHex(selectedSecondary.h, selectedSecondary.s, secondaryLightness);
+        updateStepPreview();
+        renderAccentSuggestions();
+      }
+    });
+
+    // Accent lightness slider
+    accentLightnessSlider.addEventListener('input', (e) => {
+      accentLightness = parseInt(e.target.value);
+      accentLightnessValue.textContent = `${accentLightness}%`;
+      if (selectedAccent) {
+        selectedAccent.l = accentLightness;
+        accentValue.textContent = hslToHex(selectedAccent.h, selectedAccent.s, accentLightness);
+        updateStepPreview();
+      }
+    });
+
     // Event listeners
     colorWheel.addEventListener('click', handleWheelClick);
 
@@ -954,6 +1632,8 @@
 
     // Initialize
     drawColorWheel();
+    initModeSelector();
+    initCopyComboBtn();
     updateFromHSL();
   </script>
 </body>
