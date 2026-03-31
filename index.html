@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>服装颜色搭配 | Color Combo</title>
+  <script src="https://cdn.babylonjs.com/babylon.js"></script>
   <style>
     * {
       margin: 0;
@@ -289,6 +290,12 @@
     .avatar-svg {
       max-height: 100%;
       width: 100%;
+    }
+
+    .avatar-canvas {
+      width: 100%;
+      height: 100%;
+      touch-action: none;
     }
 
     .avatar-controls {
@@ -1023,88 +1030,8 @@
       </header>
       
       <div class="avatar-preview-container">
-        <!-- SVG Avatar will be defined here -->
-        <svg class="avatar-svg" viewBox="0 0 300 500" xmlns="http://www.w3.org/2000/svg">
-          
-          <g transform="translate(150, 420)">
-            <!-- 背景发型 (Back Hair) -->
-            <path d="M -40,-270 Q -50,-180 -20,-120 Q 0,-140 20,-120 Q 50,-180 40,-270 Q 50,-350 0,-350 Q -50,-350 -40,-270 Z" fill="#2d2d2d" />
-            
-            <!-- 身体肤色层 (Skin) -->
-            <g id="avatar-skin" fill="#fcdbb5">
-              <!-- 腿部 (Legs) -->
-              <path d="M -15,0 L -25,-180 L -5,-180 L 0,-10 L 10,-10 L 5,-180 L 25,-180 L 15,0 Z" />
-              <!-- 身体/躯干 (Torso) -->
-              <path d="M -25,-180 Q -30,-250 -15,-300 L 15,-300 Q 30,-250 25,-180 Z" />
-              <!-- 手臂 (Arms) -->
-              <path d="M -15,-300 L -55,-160 L -45,-155 L -10,-280 Z" />
-              <path d="M 15,-300 L 55,-160 L 45,-155 L 10,-280 Z" />
-              <!-- 手 (Hands) -->
-              <circle cx="-50" cy="-150" r="8" />
-              <circle cx="50" cy="-150" r="8" />
-              <!-- 脖子 (Neck) -->
-              <rect x="-8" y="-320" width="16" height="20" />
-            </g>
-            
-            <!-- 下装层 (Lower Body) -->
-            <g id="layer-lower">
-              <path id="cloth-skirt" class="svg-lower" d="M -25,-180 Q 0,-175 25,-180 L 35,-90 Q 0,-80 -35,-90 Z" fill="#e7e5e4" />
-              <path id="cloth-pants" class="svg-lower" style="display:none;" d="M -25,-180 L 25,-180 L 35,-30 L 10,-30 L 0,-120 L -10,-30 L -35,-30 Z" fill="#e7e5e4" />
-            </g>
-
-            <!-- 上装层 (Upper Body) -->
-            <g id="layer-upper">
-              <!-- T恤 -->
-              <g id="cloth-tshirt" class="svg-upper">
-                <path d="M -25,-180 Q 0,-175 25,-180 L 20,-300 Q 0,-280 -20,-300 Z" fill="#6366f1" />
-                <path d="M -15,-300 L -45,-240 L -35,-230 L -10,-280 Z" fill="#6366f1" />
-                <path d="M 15,-300 L 45,-240 L 35,-230 L 10,-280 Z" fill="#6366f1" />
-              </g>
-              <!-- 毛衣 -->
-              <g id="cloth-sweater" class="svg-upper" style="display:none;">
-                <path d="M -30,-185 Q 0,-175 30,-185 Q 35,-240 25,-305 Q 0,-290 -25,-305 Q -35,-240 -30,-185 Z" fill="#6366f1" />
-                <path d="M -25,-305 L -65,-180 L -50,-170 L -15,-270 Z" fill="#6366f1" />
-                <path d="M 25,-305 L 65,-180 L 50,-170 L 15,-270 Z" fill="#6366f1" />
-                <path d="M -12,-305 Q 0,-295 12,-305 L 10,-315 Q 0,-305 -10,-315 Z" fill="#6366f1" />
-              </g>
-            </g>
-
-            <!-- 脸部 (Face) -->
-            <ellipse cx="0" cy="-345" rx="30" ry="38" fill="#fcdbb5" />
-            <!-- 眼睛 -->
-            <circle cx="-12" cy="-350" r="2.5" fill="#3a3a3a" />
-            <circle cx="12" cy="-350" r="2.5" fill="#3a3a3a" />
-            <!-- 嘴巴 -->
-            <path d="M -6,-335 Q 0,-325 6,-335" fill="none" stroke="#d49a89" stroke-width="2" stroke-linecap="round" />
-            <!-- 腮红 -->
-            <ellipse cx="-20" cy="-340" rx="5" ry="3" fill="#ffb6c1" opacity="0.6" />
-            <ellipse cx="20" cy="-340" rx="5" ry="3" fill="#ffb6c1" opacity="0.6" />
-
-            <!-- 前发刘海 (Front Bangs) -->
-            <path d="M -35,-350 Q -25,-390 0,-390 Q 25,-390 35,-350 Q 20,-365 0,-360 Q -20,-365 -35,-350 Z" fill="#2d2d2d" />
-
-            <!-- 配饰层 (Accessories) -->
-            <g id="layer-acc">
-              <!-- 项链 -->
-              <g id="acc-necklace">
-                <path d="M -12,-300 Q 0,-275 12,-300" fill="none" stroke="#e7e5e4" stroke-width="2" class="svg-acc-stroke" />
-                <circle cx="0" cy="-286" r="4" fill="#e7e5e4" class="svg-acc-fill" />
-              </g>
-              <!-- 手表 -->
-              <g id="acc-watch" style="display:none;">
-                <path d="M -52,-175 L -45,-170 L -48,-165 L -55,-170 Z" fill="#3a3a3a" />
-                <circle cx="-50" cy="-170" r="3.5" fill="#e7e5e4" class="svg-acc-fill" />
-              </g>
-              <!-- 帽子 -->
-              <g id="acc-hat" style="display:none;">
-                <path d="M -45,-370 Q 0,-400 45,-370 L 40,-380 Q 0,-420 -40,-380 Z" fill="#e7e5e4" class="svg-acc-fill" />
-                <path d="M -30,-380 Q 0,-440 30,-380 Z" fill="#e7e5e4" class="svg-acc-fill" />
-                <path d="M -28,-380 Q 0,-370 28,-380 L 25,-390 Q 0,-380 -25,-390 Z" fill="rgba(0,0,0,0.2)" />
-              </g>
-            </g>
-          </g>
-
-        </svg>
+        <!-- Babylon.js Canvas will be defined here -->
+        <canvas id="avatar-canvas" class="avatar-canvas"></canvas>
       </div>
 
       <div class="avatar-controls">
@@ -1406,7 +1333,7 @@
     }
 
 
-    // Avatar Logic
+    // Avatar Logic - Babylon.js 3D
     const avatarState = {
       upper: 'tshirt',
       lower: 'skirt',
@@ -1415,6 +1342,571 @@
       watch: false
     };
 
+    // Babylon.js globals
+    let engine;
+    let scene;
+    let camera;
+    let avatarRoot;
+    let upperMeshes = [];
+    let lowerMeshes = [];
+    let accMeshes = [];
+    let skinMaterial;
+    let hairMaterial;
+    let faceMaterial;
+    let upperMaterial;
+    let lowerMaterial;
+    let accMaterial;
+    let shadowGenerator;
+
+    function hexToColor3(hex) {
+      hex = hex.replace('#', '');
+      const r = parseInt(hex.substr(0, 2), 16) / 255;
+      const g = parseInt(hex.substr(2, 2), 16) / 255;
+      const b = parseInt(hex.substr(4, 2), 16) / 255;
+      return new BABYLON.Color3(r, g, b);
+    }
+
+    function initBabylonScene() {
+      const canvas = document.getElementById('avatar-canvas');
+      const container = canvas.parentElement;
+
+      engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+      scene = new BABYLON.Scene(engine);
+      scene.clearColor = new BABYLON.Color4(0.98, 0.98, 0.98, 1);
+
+      // Camera - ArcRotateCamera for 360° rotation + zoom
+      camera = new BABYLON.ArcRotateCamera('camera', -Math.PI / 2, Math.PI / 2.5, 400, new BABYLON.Vector3(0, 100, 0), scene);
+      camera.attachControl(canvas, true);
+      camera.lowerRadiusLimit = 250;
+      camera.upperRadiusLimit = 700;
+      camera.wheelPrecision = 50;
+      camera.panningSensibility = 0;
+      camera.minZ = 0.1;
+
+      // Lighting - Realistic PBR-style
+      const hemiLight = new BABYLON.HemisphericLight('hemiLight', new BABYLON.Vector3(0, 1, 0), scene);
+      hemiLight.intensity = 0.6;
+      hemiLight.diffuse = new BABYLON.Color3(1, 0.98, 0.95);
+      hemiLight.groundColor = new BABYLON.Color3(0.4, 0.4, 0.45);
+
+      const dirLight = new BABYLON.DirectionalLight('dirLight', new BABYLON.Vector3(-1, -2, -1), scene);
+      dirLight.intensity = 0.8;
+      dirLight.diffuse = new BABYLON.Color3(1, 0.95, 0.9);
+
+      const fillLight = new BABYLON.DirectionalLight('fillLight', new BABYLON.Vector3(1, -1, 1), scene);
+      fillLight.intensity = 0.3;
+      fillLight.diffuse = new BABYLON.Color3(0.9, 0.95, 1);
+
+      // Shadow generator
+      shadowGenerator = new BABYLON.ShadowGenerator(1024, dirLight);
+      shadowGenerator.useBlurExponentialShadowMap = true;
+      shadowGenerator.blurKernel = 32;
+
+      // Create shadow plane
+      const shadowPlane = BABYLON.MeshBuilder.CreateGround('shadowPlane', { width: 300, height: 300 }, scene);
+      shadowPlane.position.y = -180;
+      shadowPlane.receiveShadows = true;
+      const shadowMat = new BABYLON.StandardMaterial('shadowMat', scene);
+      shadowMat.diffuseColor = new BABYLON.Color3(0, 0, 0);
+      shadowMat.alpha = 0.15;
+      shadowPlane.material = shadowMat;
+
+      // Materials
+      skinMaterial = new BABYLON.PBRMaterial('skinMat', scene);
+      skinMaterial.albedoColor = hexToColor3('#fcdbb5');
+      skinMaterial.metallic = 0.0;
+      skinMaterial.roughness = 0.7;
+
+      hairMaterial = new BABYLON.PBRMaterial('hairMat', scene);
+      hairMaterial.albedoColor = hexToColor3('#2d2d2d');
+      hairMaterial.metallic = 0.1;
+      hairMaterial.roughness = 0.8;
+
+      faceMaterial = new BABYLON.PBRMaterial('faceMat', scene);
+      faceMaterial.albedoColor = hexToColor3('#fcdbb5');
+      faceMaterial.metallic = 0.0;
+      faceMaterial.roughness = 0.6;
+
+      upperMaterial = new BABYLON.PBRMaterial('upperMat', scene);
+      upperMaterial.albedoColor = hexToColor3('#6366f1');
+      upperMaterial.metallic = 0.0;
+      upperMaterial.roughness = 0.8;
+
+      lowerMaterial = new BABYLON.PBRMaterial('lowerMat', scene);
+      lowerMaterial.albedoColor = hexToColor3('#e7e5e4');
+      lowerMaterial.metallic = 0.0;
+      lowerMaterial.roughness = 0.8;
+
+      accMaterial = new BABYLON.PBRMaterial('accMat', scene);
+      accMaterial.albedoColor = hexToColor3('#e7e5e4');
+      accMaterial.metallic = 0.3;
+      accMaterial.roughness = 0.5;
+
+      // Build character
+      avatarRoot = new BABYLON.TransformNode('avatarRoot', scene);
+
+      buildBody();
+      buildClothing();
+      buildAccessories();
+
+      // Initial state
+      updateClothingVisibility();
+      updateAvatarColors('#6366f1', '#e7e5e4', '#e7e5e4');
+
+      // Render loop
+      engine.runRenderLoop(() => {
+        scene.render();
+      });
+
+      // Resize handler
+      const resizeObserver = new ResizeObserver(() => {
+        engine.resize();
+      });
+      resizeObserver.observe(container);
+    }
+
+    function buildBody() {
+      // Torso
+      const torso = BABYLON.MeshBuilder.CreateCylinder('torso', {
+        height: 120,
+        diameterTop: 50,
+        diameterBottom: 60,
+        tessellation: 16
+      }, scene);
+      torso.position.y = 100;
+      torso.material = skinMaterial;
+      torso.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(torso);
+
+      // Neck
+      const neck = BABYLON.MeshBuilder.CreateCylinder('neck', {
+        height: 30,
+        diameter: 20,
+        tessellation: 12
+      }, scene);
+      neck.position.y = 170;
+      neck.material = skinMaterial;
+      neck.parent = avatarRoot;
+
+      // Head
+      const head = BABYLON.MeshBuilder.CreateSphere('head', {
+        diameter: 65,
+        segments: 16
+      }, scene);
+      head.position.y = 200;
+      head.scaling = new BABYLON.Vector3(1, 1.15, 0.95);
+      head.material = faceMaterial;
+      head.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(head);
+
+      // Eyes
+      const eyeL = BABYLON.MeshBuilder.CreateSphere('eyeL', { diameter: 6 }, scene);
+      eyeL.position = new BABYLON.Vector3(-12, 205, 28);
+      eyeL.material = new BABYLON.StandardMaterial('eyeLMat', scene);
+      eyeL.material.diffuseColor = new BABYLON.Color3(0.15, 0.15, 0.15);
+      eyeL.parent = avatarRoot;
+
+      const eyeR = BABYLON.MeshBuilder.CreateSphere('eyeR', { diameter: 6 }, scene);
+      eyeR.position = new BABYLON.Vector3(12, 205, 28);
+      eyeR.material = eyeL.material;
+      eyeR.parent = avatarRoot;
+
+      // Blush
+      const blushMat = new BABYLON.StandardMaterial('blushMat', scene);
+      blushMat.diffuseColor = new BABYLON.Color3(1, 0.7, 0.75);
+      blushMat.alpha = 0.5;
+
+      const blushL = BABYLON.MeshBuilder.CreateSphere('blushL', { diameter: 10 }, scene);
+      blushL.position = new BABYLON.Vector3(-22, 198, 22);
+      blushL.scaling = new BABYLON.Vector3(1, 0.6, 0.3);
+      blushL.material = blushMat;
+      blushL.parent = avatarRoot;
+
+      const blushR = BABYLON.MeshBuilder.CreateSphere('blushR', { diameter: 10 }, scene);
+      blushR.position = new BABYLON.Vector3(22, 198, 22);
+      blushR.scaling = new BABYLON.Vector3(1, 0.6, 0.3);
+      blushR.material = blushMat;
+      blushR.parent = avatarRoot;
+
+      // Mouth
+      const mouth = BABYLON.MeshBuilder.CreateTorus('mouth', {
+        diameter: 12,
+        thickness: 2,
+        tessellation: 16
+      }, scene);
+      mouth.position = new BABYLON.Vector3(0, 188, 28);
+      mouth.rotation.z = Math.PI;
+      const mouthMat = new BABYLON.StandardMaterial('mouthMat', scene);
+      mouthMat.diffuseColor = new BABYLON.Color3(0.83, 0.6, 0.53);
+      mouth.material = mouthMat;
+      mouth.parent = avatarRoot;
+
+      // Hair (back)
+      const hairBack = BABYLON.MeshBuilder.CreateSphere('hairBack', {
+        diameter: 75,
+        segments: 12
+      }, scene);
+      hairBack.position.y = 210;
+      hairBack.position.z = -5;
+      hairBack.scaling = new BABYLON.Vector3(1.1, 1.2, 1);
+      hairBack.material = hairMaterial;
+      hairBack.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(hairBack);
+
+      // Hair (bangs)
+      const bangs = BABYLON.MeshBuilder.CreateSphere('bangs', {
+        diameter: 70,
+        segments: 12
+      }, scene);
+      bangs.position.y = 230;
+      bangs.position.z = 15;
+      bangs.scaling = new BABYLON.Vector3(1.1, 0.5, 0.6);
+      bangs.material = hairMaterial;
+      bangs.parent = avatarRoot;
+
+      // Legs
+      const legL = BABYLON.MeshBuilder.CreateCylinder('legL', {
+        height: 180,
+        diameter: 28,
+        tessellation: 12
+      }, scene);
+      legL.position = new BABYLON.Vector3(-15, -70, 0);
+      legL.material = skinMaterial;
+      legL.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(legL);
+
+      const legR = BABYLON.MeshBuilder.CreateCylinder('legR', {
+        height: 180,
+        diameter: 28,
+        tessellation: 12
+      }, scene);
+      legR.position = new BABYLON.Vector3(15, -70, 0);
+      legR.material = skinMaterial;
+      legR.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(legR);
+
+      // Feet
+      const footL = BABYLON.MeshBuilder.CreateBox('footL', {
+        width: 30,
+        height: 15,
+        depth: 50
+      }, scene);
+      footL.position = new BABYLON.Vector3(-15, -165, 8);
+      footL.material = skinMaterial;
+      footL.parent = avatarRoot;
+
+      const footR = BABYLON.MeshBuilder.CreateBox('footR', {
+        width: 30,
+        height: 15,
+        depth: 50
+      }, scene);
+      footR.position = new BABYLON.Vector3(15, -165, 8);
+      footR.material = skinMaterial;
+      footR.parent = avatarRoot;
+
+      // Arms
+      const armL = BABYLON.MeshBuilder.CreateCylinder('armL', {
+        height: 100,
+        diameterTop: 16,
+        diameterBottom: 20,
+        tessellation: 12
+      }, scene);
+      armL.position = new BABYLON.Vector3(-50, 80, 0);
+      armL.rotation.z = Math.PI / 6;
+      armL.material = skinMaterial;
+      armL.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(armL);
+
+      const armR = BABYLON.MeshBuilder.CreateCylinder('armR', {
+        height: 100,
+        diameterTop: 16,
+        diameterBottom: 20,
+        tessellation: 12
+      }, scene);
+      armR.position = new BABYLON.Vector3(50, 80, 0);
+      armR.rotation.z = -Math.PI / 6;
+      armR.material = skinMaterial;
+      armR.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(armR);
+
+      // Hands
+      const handL = BABYLON.MeshBuilder.CreateSphere('handL', { diameter: 22 }, scene);
+      handL.position = new BABYLON.Vector3(-80, 20, 0);
+      handL.material = skinMaterial;
+      handL.parent = avatarRoot;
+
+      const handR = BABYLON.MeshBuilder.CreateSphere('handR', { diameter: 22 }, scene);
+      handR.position = new BABYLON.Vector3(80, 20, 0);
+      handR.material = skinMaterial;
+      handR.parent = avatarRoot;
+    }
+
+    function buildClothing() {
+      // T-Shirt
+      const tshirtBody = BABYLON.MeshBuilder.CreateCylinder('tshirtBody', {
+        height: 130,
+        diameterTop: 55,
+        diameterBottom: 65,
+        tessellation: 16
+      }, scene);
+      tshirtBody.position.y = 95;
+      tshirtBody.material = upperMaterial;
+      tshirtBody.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(tshirtBody);
+      upperMeshes.push({ name: 'tshirtBody', mesh: tshirtBody });
+
+      const tshirtSleeveL = BABYLON.MeshBuilder.CreateCylinder('tshirtSleeveL', {
+        height: 35,
+        diameterTop: 22,
+        diameterBottom: 28,
+        tessellation: 12
+      }, scene);
+      tshirtSleeveL.position = new BABYLON.Vector3(-42, 130, 0);
+      tshirtSleeveL.rotation.z = Math.PI / 4;
+      tshirtSleeveL.material = upperMaterial;
+      tshirtSleeveL.parent = avatarRoot;
+      upperMeshes.push({ name: 'tshirtSleeveL', mesh: tshirtSleeveL });
+
+      const tshirtSleeveR = BABYLON.MeshBuilder.CreateCylinder('tshirtSleeveR', {
+        height: 35,
+        diameterTop: 22,
+        diameterBottom: 28,
+        tessellation: 12
+      }, scene);
+      tshirtSleeveR.position = new BABYLON.Vector3(42, 130, 0);
+      tshirtSleeveR.rotation.z = -Math.PI / 4;
+      tshirtSleeveR.material = upperMaterial;
+      tshirtSleeveR.parent = avatarRoot;
+      upperMeshes.push({ name: 'tshirtSleeveR', mesh: tshirtSleeveR });
+
+      // Sweater
+      const sweaterBody = BABYLON.MeshBuilder.CreateCylinder('sweaterBody', {
+        height: 140,
+        diameterTop: 60,
+        diameterBottom: 75,
+        tessellation: 16
+      }, scene);
+      sweaterBody.position.y = 90;
+      sweaterBody.material = upperMaterial;
+      sweaterBody.parent = avatarRoot;
+      sweaterBody.setEnabled(false);
+      shadowGenerator.addShadowCaster(sweaterBody);
+      upperMeshes.push({ name: 'sweaterBody', mesh: sweaterBody });
+
+      const sweaterSleeveL = BABYLON.MeshBuilder.CreateCylinder('sweaterSleeveL', {
+        height: 110,
+        diameterTop: 22,
+        diameterBottom: 30,
+        tessellation: 12
+      }, scene);
+      sweaterSleeveL.position = new BABYLON.Vector3(-55, 75, 0);
+      sweaterSleeveL.rotation.z = Math.PI / 5;
+      sweaterSleeveL.material = upperMaterial;
+      sweaterSleeveL.parent = avatarRoot;
+      sweaterSleeveL.setEnabled(false);
+      upperMeshes.push({ name: 'sweaterSleeveL', mesh: sweaterSleeveL });
+
+      const sweaterSleeveR = BABYLON.MeshBuilder.CreateCylinder('sweaterSleeveR', {
+        height: 110,
+        diameterTop: 22,
+        diameterBottom: 30,
+        tessellation: 12
+      }, scene);
+      sweaterSleeveR.position = new BABYLON.Vector3(55, 75, 0);
+      sweaterSleeveR.rotation.z = -Math.PI / 5;
+      sweaterSleeveR.material = upperMaterial;
+      sweaterSleeveR.parent = avatarRoot;
+      sweaterSleeveR.setEnabled(false);
+      upperMeshes.push({ name: 'sweaterSleeveR', mesh: sweaterSleeveR });
+
+      const sweaterCollar = BABYLON.MeshBuilder.CreateTorus('sweaterCollar', {
+        diameter: 40,
+        thickness: 12,
+        tessellation: 24
+      }, scene);
+      sweaterCollar.position.y = 160;
+      sweaterCollar.rotation.x = Math.PI / 2;
+      sweaterCollar.material = upperMaterial;
+      sweaterCollar.parent = avatarRoot;
+      sweaterCollar.setEnabled(false);
+      upperMeshes.push({ name: 'sweaterCollar', mesh: sweaterCollar });
+
+      // Skirt
+      const skirt = BABYLON.MeshBuilder.CreateCylinder('skirt', {
+        height: 100,
+        diameterTop: 65,
+        diameterBottom: 100,
+        tessellation: 20
+      }, scene);
+      skirt.position.y = -20;
+      skirt.material = lowerMaterial;
+      skirt.parent = avatarRoot;
+      shadowGenerator.addShadowCaster(skirt);
+      lowerMeshes.push({ name: 'skirt', mesh: skirt });
+
+      // Pants
+      const pants = BABYLON.MeshBuilder.CreateCylinder('pants', {
+        height: 200,
+        diameterTop: 65,
+        diameterBottom: 40,
+        tessellation: 16
+      }, scene);
+      pants.position.y = -80;
+      pants.material = lowerMaterial;
+      pants.parent = avatarRoot;
+      pants.setEnabled(false);
+      shadowGenerator.addShadowCaster(pants);
+      lowerMeshes.push({ name: 'pants', mesh: pants });
+    }
+
+    function buildAccessories() {
+      // Necklace
+      const necklace = BABYLON.MeshBuilder.CreateTorus('necklace', {
+        diameter: 35,
+        thickness: 3,
+        tessellation: 24
+      }, scene);
+      necklace.position.y = 155;
+      necklace.rotation.x = Math.PI / 2;
+      necklace.material = accMaterial;
+      necklace.parent = avatarRoot;
+      accMeshes.push({ name: 'necklace', mesh: necklace });
+
+      const necklacePendant = BABYLON.MeshBuilder.CreateSphere('necklacePendant', {
+        diameter: 10
+      }, scene);
+      necklacePendant.position.y = 137;
+      necklacePendant.scaling = new BABYLON.Vector3(1, 1.3, 0.5);
+      necklacePendant.material = accMaterial;
+      necklacePendant.parent = avatarRoot;
+      accMeshes.push({ name: 'necklacePendant', mesh: necklacePendant });
+
+      // Watch
+      const watchBand = BABYLON.MeshBuilder.CreateBox('watchBand', {
+        width: 18,
+        height: 8,
+        depth: 25
+      }, scene);
+      watchBand.position = new BABYLON.Vector3(-85, 15, 0);
+      const watchMat = new BABYLON.PBRMaterial('watchMat', scene);
+      watchMat.albedoColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+      watchMat.metallic = 0.8;
+      watchMat.roughness = 0.3;
+      watchBand.material = watchMat;
+      watchBand.parent = avatarRoot;
+      watchBand.setEnabled(false);
+      accMeshes.push({ name: 'watchBand', mesh: watchBand });
+
+      const watchFace = BABYLON.MeshBuilder.CreateCylinder('watchFace', {
+        height: 4,
+        diameter: 16,
+        tessellation: 16
+      }, scene);
+      watchFace.position = new BABYLON.Vector3(-85, 15, 0);
+      watchFace.rotation.z = Math.PI / 2;
+      watchFace.material = accMaterial;
+      watchFace.parent = avatarRoot;
+      watchFace.setEnabled(false);
+      accMeshes.push({ name: 'watchFace', mesh: watchFace });
+
+      // Hat
+      const hatBrim = BABYLON.MeshBuilder.CreateCylinder('hatBrim', {
+        height: 8,
+        diameterTop: 80,
+        diameterBottom: 75,
+        tessellation: 24
+      }, scene);
+      hatBrim.position.y = 232;
+      hatBrim.material = accMaterial;
+      hatBrim.parent = avatarRoot;
+      hatBrim.setEnabled(false);
+      shadowGenerator.addShadowCaster(hatBrim);
+      accMeshes.push({ name: 'hatBrim', mesh: hatBrim });
+
+      const hatTop = BABYLON.MeshBuilder.CreateCylinder('hatTop', {
+        height: 45,
+        diameterTop: 50,
+        diameterBottom: 55,
+        tessellation: 24
+      }, scene);
+      hatTop.position.y = 255;
+      hatTop.material = accMaterial;
+      hatTop.parent = avatarRoot;
+      hatTop.setEnabled(false);
+      shadowGenerator.addShadowCaster(hatTop);
+      accMeshes.push({ name: 'hatTop', mesh: hatTop });
+
+      const hatBand = BABYLON.MeshBuilder.CreateTorus('hatBand', {
+        diameter: 55,
+        thickness: 6,
+        tessellation: 24
+      }, scene);
+      hatBand.position.y = 238;
+      hatBand.rotation.x = Math.PI / 2;
+      hatBand.material = new BABYLON.PBRMaterial('hatBandMat', scene);
+      hatBand.material.albedoColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+      hatBand.material.metallic = 0.2;
+      hatBand.material.roughness = 0.8;
+      hatBand.parent = avatarRoot;
+      hatBand.setEnabled(false);
+      accMeshes.push({ name: 'hatBand', mesh: hatBand });
+    }
+
+    function updateClothingVisibility() {
+      // Upper clothing
+      const tshirtMeshes = ['tshirtBody', 'tshirtSleeveL', 'tshirtSleeveR'];
+      const sweaterMeshes = ['sweaterBody', 'sweaterSleeveL', 'sweaterSleeveR', 'sweaterCollar'];
+
+      upperMeshes.forEach(item => {
+        if (tshirtMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.upper === 'tshirt');
+        } else if (sweaterMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.upper === 'sweater');
+        }
+      });
+
+      // Lower clothing
+      const skirtMeshes = ['skirt'];
+      const pantsMeshes = ['pants'];
+
+      lowerMeshes.forEach(item => {
+        if (skirtMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.lower === 'skirt');
+        } else if (pantsMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.lower === 'pants');
+        }
+      });
+
+      // Accessories
+      const necklaceMeshes = ['necklace', 'necklacePendant'];
+      const watchMeshes = ['watchBand', 'watchFace'];
+      const hatMeshes = ['hatBrim', 'hatTop', 'hatBand'];
+
+      accMeshes.forEach(item => {
+        if (necklaceMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.necklace);
+        } else if (watchMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.watch);
+        } else if (hatMeshes.includes(item.name)) {
+          item.mesh.setEnabled(avatarState.hat);
+        }
+      });
+    }
+
+    function updateAvatarColors(mainHex, secondaryHex, accentHex) {
+      upperMaterial.albedoColor = hexToColor3(mainHex);
+      lowerMaterial.albedoColor = hexToColor3(secondaryHex);
+      accMaterial.albedoColor = hexToColor3(accentHex);
+
+      // Add slight emissive for accent to make it pop
+      const accColor = hexToColor3(accentHex);
+      accMaterial.emissiveColor = new BABYLON.Color3(
+        accColor.r * 0.15,
+        accColor.g * 0.15,
+        accColor.b * 0.15
+      );
+    }
+
     function initAvatarControls() {
       // Upper
       document.querySelectorAll('#upperControls .btn-option').forEach(btn => {
@@ -1422,8 +1914,7 @@
           document.querySelectorAll('#upperControls .btn-option').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           avatarState.upper = btn.dataset.value;
-          document.getElementById('cloth-tshirt').style.display = avatarState.upper === 'tshirt' ? 'block' : 'none';
-          document.getElementById('cloth-sweater').style.display = avatarState.upper === 'sweater' ? 'block' : 'none';
+          updateClothingVisibility();
         });
       });
       // Lower
@@ -1432,8 +1923,7 @@
           document.querySelectorAll('#lowerControls .btn-option').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           avatarState.lower = btn.dataset.value;
-          document.getElementById('cloth-skirt').style.display = avatarState.lower === 'skirt' ? 'block' : 'none';
-          document.getElementById('cloth-pants').style.display = avatarState.lower === 'pants' ? 'block' : 'none';
+          updateClothingVisibility();
         });
       });
       // Accessories
@@ -1442,16 +1932,9 @@
           btn.classList.toggle('active');
           const acc = btn.dataset.value;
           avatarState[acc] = btn.classList.contains('active');
-          document.getElementById(`acc-${acc}`).style.display = avatarState[acc] ? 'block' : 'none';
+          updateClothingVisibility();
         });
       });
-    }
-
-    function updateAvatarColors(mainHex, secondaryHex, accentHex) {
-      document.querySelectorAll('.svg-upper path').forEach(el => el.setAttribute('fill', mainHex));
-      document.querySelectorAll('.svg-lower').forEach(el => el.setAttribute('fill', secondaryHex));
-      document.querySelectorAll('.svg-acc-fill').forEach(el => el.setAttribute('fill', accentHex));
-      document.querySelectorAll('.svg-acc-stroke').forEach(el => el.setAttribute('stroke', accentHex));
     }
 
     function applySchemeToAvatar(mainHex, secondaryHex, accentHex, e) {
@@ -1947,6 +2430,7 @@
     drawColorWheel();
     initModeSelector();
     initCopyComboBtn();
+    initBabylonScene();
     initAvatarControls();
     updateFromHSL();
   </script>
